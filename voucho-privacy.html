@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité — Voucho Wallet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0a051b, #0e0a2d);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f3f1f8;
+            --text-muted: #a39eb9;
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.15);
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .last-update {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Nav Quick Links */
+        .quick-links {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-links h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .quick-links ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .quick-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .quick-links a::before {
+            content: '→';
+            margin-right: 8px;
+            color: var(--accent);
+            transition: transform 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .quick-links a:hover::before {
+            transform: translateX(4px);
+        }
+
+        /* Content Sections */
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        section:hover {
+            border-color: rgba(139, 92, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .section-num {
+            background: var(--accent-glow);
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        p strong {
+            color: var(--text-primary);
+        }
+
+        ul.bullets {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        ul.bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        ul.bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.3rem;
+            line-height: 1;
+            top: -2px;
+        }
+
+        /* Third party badges */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge.admob::before { content: '📢'; }
+        .badge.revenuecat::before { content: '💳'; }
+        .badge.supabase::before { content: '⚡'; }
+
+        /* Security highlight box */
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.04);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box h4 {
+            color: var(--success);
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-icon">💳</div>
+        <h1>Voucho Wallet</h1>
+        <p class="subtitle">Politique de Confidentialité</p>
+        <p class="last-update">Dernière mise à jour : 30 Mai 2026</p>
+    </header>
+
+    <div class="quick-links">
+        <h3>Accès rapide</h3>
+        <ul>
+            <li><a href="#collecte">Collecte des Données</a></li>
+            <li><a href="#tiers">Services Tiers</a></li>
+            <li><a href="#securite">Sécurité et Chiffrement</a></li>
+            <li><a href="#droits">Vos Droits</a></li>
+        </ul>
+    </div>
+
+    <!-- Section 1 -->
+    <section id="introduction">
+        <h2><span class="section-num">1</span>Introduction</h2>
+        <p>
+            Bienvenue sur <strong>Voucho Wallet</strong> (l'« Application »). Nous accordons une importance primordiale au respect de votre vie privée et à la sécurité de vos informations.
+        </p>
+        <p>
+            La présente Politique de Confidentialité décrit quelles informations sont collectées lorsque vous utilisez l'Application, comment elles sont utilisées, et les garanties de chiffrement avancées mises en œuvre pour les protéger.
+        </p>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="collecte">
+        <h2><span class="section-num">2</span>Collecte et Utilisation des Données</h2>
+        <p>
+            Voucho Wallet est une application conçue pour sauvegarder et gérer vos bons de réduction, billets et cartes (les « Vouchers »). Nous veillons à minimiser la collecte de données personnelles au strict nécessaire.
+        </p>
+        
+        <p><strong>Données stockées localement et synchronisées :</strong></p>
+        <ul class="bullets">
+            <li><strong>Fichiers et Détails de Bons (Vouchers)</strong> : Les fichiers de vos bons (PDF, images, codes QR) ainsi que leurs métadonnées (titres, dates d'expiration, montants) sont stockés localement sur votre appareil. Si vous utilisez la synchronisation, ils sont hébergés de manière sécurisée et chiffrée sur nos serveurs.</li>
+            <li><strong>Identifiants de dossier</strong> : Les dossiers de classement créés pour organiser vos bons.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>🔒 Chiffrement de bout en bout de vos fichiers</h4>
+            <p>
+                Afin de garantir une confidentialité absolue, tous les fichiers de vos bons de réduction (PDF, images de codes QR) ainsi que vos informations sensibles sont <strong>chiffres localement sur votre propre appareil</strong> à l'aide d'algorithmes cryptographiques de pointe avant d'être synchronisés. Nous n'avons aucun moyen d'accéder au contenu réel de vos documents en clair sur nos serveurs de sauvegarde.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="tiers">
+        <h2><span class="section-num">3</span>Fournisseurs de Services Tiers</h2>
+        <p>
+            L'Application intègre des services de tiers pour assurer la synchronisation, le traitement des abonnements Premium et la diffusion de publicités. Ces partenaires tiers ont accès à certaines données techniques nécessaires à leur fonctionnement.
+        </p>
+        
+        <div class="badge-container">
+            <span class="badge supabase">Supabase</span>
+            <span class="badge admob">Google AdMob</span>
+            <span class="badge revenuecat">RevenueCat</span>
+        </div>
+
+        <p>Voici les services tiers utilisés et leurs politiques respectives :</p>
+        <ul class="bullets">
+            <li>
+                <strong>Supabase (Base de données et Stockage Cloud)</strong> : Utilisé pour la synchronisation sécurisée et le stockage des sauvegardes chiffrées de vos bons.
+                <br><a href="https://supabase.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Supabase</a>
+            </li>
+            <li>
+                <strong>Google AdMob (Régie Publicitaire)</strong> : Utilisé pour diffuser des annonces dans la version gratuite de l'Application. AdMob peut collecter des identifiants d'appareil uniques (tels que l'ID d'annonce publicitaire Apple ou Google) afin de proposer des annonces ciblées ou personnalisées.
+                <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Google</a>
+            </li>
+            <li>
+                <strong>RevenueCat (Gestion des Abonnements)</strong> : Utilisé pour gérer et valider les transactions d'abonnements Pro (Premium). RevenueCat traite de manière anonymisée vos statuts d'achats sur l'App Store ou le Google Play Store pour déverrouiller vos fonctionnalités.
+                <br><a href="https://www.revenuecat.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de RevenueCat</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="securite">
+        <h2><span class="section-num">4</span>Sécurité des Données</h2>
+        <p>
+            Nous mettons en œuvre toutes les mesures de sécurité techniques et organisationnelles requises pour empêcher l'accès non autorisé, la modification, la divulgation ou la destruction de vos informations. 
+        </p>
+        <p>
+            Vos documents sont stockés de manière isolée et chiffrée, et toutes les communications réseau avec notre infrastructure Supabase s'effectuent via des canaux hautement sécurisés (HTTPS / SSL).
+        </p>
+    </section>
+
+    <!-- Section 5 -->
+    <section id="droits">
+        <h2><span class="section-num">5</span>Vos Droits et Suppression de Données</h2>
+        <p>
+            Conformément aux réglementations sur la protection des données personnelles (RGPD pour l'Europe, LPD pour la Suisse, CCPA pour les États-Unis), vous disposez des droits suivants :
+        </p>
+        <ul class="bullets">
+            <li>Droit d'accès aux données collectées vous concernant.</li>
+            <li>Droit de rectification de toute donnée incorrecte.</li>
+            <li><strong>Droit à l'effacement de vos données</strong> : Vous pouvez supprimer définitivement l'ensemble de vos bons et comptes enregistrés sur nos serveurs de sauvegarde directement depuis les paramètres de l'Application ou en nous contactant par courriel.</li>
+        </ul>
+    </section>
+
+    <!-- Section 6 -->
+    <section id="contact">
+        <h2><span class="section-num">6</span>Contact</h2>
+        <p>
+            Pour toute question, réclamation ou demande concernant vos données personnelles ou cette politique de confidentialité, vous pouvez nous écrire directement à :
+        </p>
+        <p style="text-align: center; margin-top: 15px;">
+            <strong style="background: var(--accent-glow); padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.3); font-size: 1.1rem; color: var(--accent);">
+                citarox.dev@gmail.com
+            </strong>
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Voucho Wallet. Tous droits réservés.</p>
+        <p>Propulsé par <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+    </footer>
+</div>
+
+</body>
+</html>
