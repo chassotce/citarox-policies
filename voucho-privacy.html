@@ -37,6 +37,40 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* Language Switcher Button Group */
+        .lang-switch {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: var(--text-primary);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
         }
 
         header {
@@ -281,6 +315,10 @@
             text-decoration: underline;
         }
 
+        /* Language visibility utility classes */
+        .lang-fr { display: block; }
+        .lang-en { display: none; }
+
         /* Responsive adjustments */
         @media (max-width: 600px) {
             body {
@@ -294,67 +332,146 @@
             h1 {
                 font-size: 2rem;
             }
+
+            .lang-switch {
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Language Toggle Switch -->
+    <div class="lang-switch">
+        <button id="btn-fr" class="lang-btn active" onclick="switchLanguage('fr')">Français</button>
+        <button id="btn-en" class="lang-btn" onclick="switchLanguage('en')">English</button>
+    </div>
+
     <header>
         <div class="logo-icon">💳</div>
         <h1>Voucho Wallet</h1>
-        <p class="subtitle">Politique de Confidentialité</p>
-        <p class="last-update">Dernière mise à jour : 30 Mai 2026</p>
+        
+        <!-- Subtitles FR/EN -->
+        <p class="subtitle lang-fr">Politique de Confidentialité</p>
+        <p class="subtitle lang-en">Privacy Policy</p>
+        
+        <!-- Last updates FR/EN -->
+        <p class="last-update lang-fr">Dernière mise à jour : 30 Mai 2026</p>
+        <p class="last-update lang-en">Last updated: May 30, 2026</p>
     </header>
 
+    <!-- Quick Navigation links -->
     <div class="quick-links">
-        <h3>Accès rapide</h3>
-        <ul>
+        <h3 class="lang-fr">Accès rapide</h3>
+        <h3 class="lang-en">Quick access</h3>
+        
+        <ul class="lang-fr">
             <li><a href="#collecte">Collecte des Données</a></li>
             <li><a href="#tiers">Services Tiers</a></li>
             <li><a href="#securite">Sécurité et Chiffrement</a></li>
             <li><a href="#droits">Vos Droits</a></li>
         </ul>
+        <ul class="lang-en">
+            <li><a href="#collecte">Data Collection</a></li>
+            <li><a href="#tiers">Third-Party Services</a></li>
+            <li><a href="#securite">Security & Encryption</a></li>
+            <li><a href="#droits">Your Rights</a></li>
+        </ul>
     </div>
 
-    <!-- Section 1 -->
+    <!-- Section 1 : Introduction -->
     <section id="introduction">
-        <h2><span class="section-num">1</span>Introduction</h2>
-        <p>
-            Bienvenue sur <strong>Voucho Wallet</strong> (l'« Application »). Nous accordons une importance primordiale au respect de votre vie privée et à la sécurité de vos informations.
-        </p>
-        <p>
-            La présente Politique de Confidentialité décrit quelles informations sont collectées lorsque vous utilisez l'Application, comment elles sont utilisées, et les garanties de chiffrement avancées mises en œuvre pour les protéger.
-        </p>
-    </section>
-
-    <!-- Section 2 -->
-    <section id="collecte">
-        <h2><span class="section-num">2</span>Collecte et Utilisation des Données</h2>
-        <p>
-            Voucho Wallet est une application conçue pour sauvegarder et gérer vos bons de réduction, billets et cartes (les « Vouchers »). Nous veillons à minimiser la collecte de données personnelles au strict nécessaire.
-        </p>
+        <h2>
+            <span class="section-num">1</span>
+            <span class="lang-fr">Introduction</span>
+            <span class="lang-en">Introduction</span>
+        </h2>
         
-        <p><strong>Données stockées localement et synchronisées :</strong></p>
-        <ul class="bullets">
-            <li><strong>Fichiers et Détails de Bons (Vouchers)</strong> : Les fichiers de vos bons (PDF, images, codes QR) ainsi que leurs métadonnées (titres, dates d'expiration, montants) sont stockés localement sur votre appareil. Si vous utilisez la synchronisation, ils sont hébergés de manière sécurisée et chiffrée sur nos serveurs.</li>
-            <li><strong>Identifiants de dossier</strong> : Les dossiers de classement créés pour organiser vos bons.</li>
-        </ul>
-
-        <div class="highlight-box">
-            <h4>🔒 Chiffrement de bout en bout de vos fichiers</h4>
+        <div class="lang-fr">
             <p>
-                Afin de garantir une confidentialité absolue, tous les fichiers de vos bons de réduction (PDF, images de codes QR) ainsi que vos informations sensibles sont <strong>chiffres localement sur votre propre appareil</strong> à l'aide d'algorithmes cryptographiques de pointe avant d'être synchronisés. Nous n'avons aucun moyen d'accéder au contenu réel de vos documents en clair sur nos serveurs de sauvegarde.
+                Bienvenue sur <strong>Voucho Wallet</strong> (l'« Application »). Nous accordons une importance primordiale au respect de votre vie privée et à la sécurité de vos informations.
+            </p>
+            <p>
+                La présente Politique de Confidentialité décrit quelles informations sont collectées lorsque vous utilisez l'Application, comment elles sont utilisées, et les garanties de chiffrement avancées mises en œuvre pour les protéger.
+            </p>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                Welcome to <strong>Voucho Wallet</strong> (the "Application"). We prioritize your privacy and the security of your information.
+            </p>
+            <p>
+                This Privacy Policy describes the information collected when you use the Application, how it is used, and the advanced encryption safeguards implemented to protect it.
             </p>
         </div>
     </section>
 
-    <!-- Section 3 -->
+    <!-- Section 2 : Data Collection & Encrypt -->
+    <section id="collecte">
+        <h2>
+            <span class="section-num">2</span>
+            <span class="lang-fr">Collecte et Utilisation des Données</span>
+            <span class="lang-en">Data Collection and Use</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                Voucho Wallet est une application conçue pour sauvegarder et gérer vos bons de réduction, billets et cartes (les « Vouchers »). Nous veillons à minimiser la collecte de données personnelles au strict nécessaire.
+            </p>
+            <p><strong>Données stockées localement et synchronisées :</strong></p>
+            <ul class="bullets">
+                <li><strong>Fichiers et Détails de Bons (Vouchers)</strong> : Les fichiers de vos bons (PDF, images, codes QR) ainsi que leurs métadonnées (titres, dates d'expiration, montants) sont stockés localement sur votre appareil. Si vous utilisez la synchronisation, ils sont hébergés de manière sécurisée et chiffrée sur nos serveurs.</li>
+                <li><strong>Identifiants de dossier</strong> : Les dossiers de classement créés pour organiser vos bons.</li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                Voucho Wallet is designed to store and manage your vouchers, tickets, and cards ("Vouchers"). We minimize personal data collection to what is strictly necessary.
+            </p>
+            <p><strong>Data stored locally and synchronized:</strong></p>
+            <ul class="bullets">
+                <li><strong>Voucher Files and Details</strong>: Your voucher files (PDFs, images, QR codes) and their metadata (titles, expiration dates, amounts) are stored locally on your device. If you use synchronization, they are hosted securely and in encrypted form on our servers.</li>
+                <li><strong>Folder Identifiers</strong>: The folders created to organize your vouchers.</li>
+            </ul>
+        </div>
+
+        <!-- Security Highlight Box -->
+        <div class="highlight-box">
+            <h4 class="lang-fr">🔒 Chiffrement de bout en bout de vos fichiers</h4>
+            <h4 class="lang-en">🔒 End-to-End Encryption of your files</h4>
+            
+            <p class="lang-fr">
+                Afin de garantir une confidentialité absolue, tous les fichiers de vos bons de réduction (PDF, images de codes QR) ainsi que vos informations sensibles sont <strong>chiffrés localement sur votre propre appareil</strong> à l'aide d'algorithmes cryptographiques de pointe avant d'être synchronisés. Nous n'avons aucun moyen d'accéder au contenu réel de vos documents en clair sur nos serveurs de sauvegarde.
+            </p>
+            <p class="lang-en">
+                To guarantee absolute privacy, all your voucher files (PDFs, QR code images) and your sensitive information are <strong>encrypted locally on your own device</strong> using state-of-the-art cryptographic algorithms before synchronization. We have no way to access your actual documents in plain text on our backup servers.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 3 : Third Party Services -->
     <section id="tiers">
-        <h2><span class="section-num">3</span>Fournisseurs de Services Tiers</h2>
-        <p>
-            L'Application intègre des services de tiers pour assurer la synchronisation, le traitement des abonnements Premium et la diffusion de publicités. Ces partenaires tiers ont accès à certaines données techniques nécessaires à leur fonctionnement.
-        </p>
+        <h2>
+            <span class="section-num">3</span>
+            <span class="lang-fr">Fournisseurs de Services Tiers</span>
+            <span class="lang-en">Third-Party Service Providers</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                L'Application intègre des services de tiers pour assurer la synchronisation, le traitement des abonnements Premium et la diffusion de publicités. Ces partenaires tiers ont accès à certaines données techniques nécessaires à leur fonctionnement.
+            </p>
+        </div>
+        <div class="lang-en">
+            <p>
+                The Application integrates third-party services to ensure synchronization, Premium subscription processing, and ad delivery. These third-party partners have access to certain technical data necessary for their operation.
+            </p>
+        </div>
         
         <div class="badge-container">
             <span class="badge supabase">Supabase</span>
@@ -362,53 +479,110 @@
             <span class="badge revenuecat">RevenueCat</span>
         </div>
 
-        <p>Voici les services tiers utilisés et leurs politiques respectives :</p>
-        <ul class="bullets">
-            <li>
-                <strong>Supabase (Base de données et Stockage Cloud)</strong> : Utilisé pour la synchronisation sécurisée et le stockage des sauvegardes chiffrées de vos bons.
-                <br><a href="https://supabase.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Supabase</a>
-            </li>
-            <li>
-                <strong>Google AdMob (Régie Publicitaire)</strong> : Utilisé pour diffuser des annonces dans la version gratuite de l'Application. AdMob peut collecter des identifiants d'appareil uniques (tels que l'ID d'annonce publicitaire Apple ou Google) afin de proposer des annonces ciblées ou personnalisées.
-                <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Google</a>
-            </li>
-            <li>
-                <strong>RevenueCat (Gestion des Abonnements)</strong> : Utilisé pour gérer et valider les transactions d'abonnements Pro (Premium). RevenueCat traite de manière anonymisée vos statuts d'achats sur l'App Store ou le Google Play Store pour déverrouiller vos fonctionnalités.
-                <br><a href="https://www.revenuecat.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de RevenueCat</a>
-            </li>
-        </ul>
+        <div class="lang-fr">
+            <p>Voici les services tiers utilisés et leurs politiques respectives :</p>
+            <ul class="bullets">
+                <li>
+                    <strong>Supabase (Base de données et Stockage Cloud)</strong> : Utilisé pour la synchronisation sécurisée et le stockage des sauvegardes chiffrées de vos bons.
+                    <br><a href="https://supabase.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Supabase</a>
+                </li>
+                <li>
+                    <strong>Google AdMob (Régie Publicitaire)</strong> : Utilisé pour diffuser des annonces dans la version gratuite de l'Application. AdMob peut collecter des identifiants d'appareil uniques (tels que l'ID d'annonce publicitaire Apple ou Google) afin de proposer des annonces ciblées ou personnalisées.
+                    <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Google</a>
+                </li>
+                <li>
+                    <strong>RevenueCat (Gestion des Abonnements)</strong> : Utilisé pour gérer et valider les transactions d'abonnements Pro (Premium). RevenueCat traite de manière anonymisée vos statuts d'achats sur l'App Store ou le Google Play Store pour déverrouiller vos fonctionnalités.
+                    <br><a href="https://www.revenuecat.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de RevenueCat</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>Here are the third-party services used and their respective policies:</p>
+            <ul class="bullets">
+                <li>
+                    <strong>Supabase (Database and Cloud Storage)</strong>: Used for secure synchronization and hosting of your encrypted voucher backups.
+                    <br><a href="https://supabase.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Supabase Privacy Policy</a>
+                </li>
+                <li>
+                    <strong>Google AdMob (Ad Network)</strong>: Used to deliver ads in the free version of the Application. AdMob may collect unique device identifiers (such as Apple's IDFA or Google's Advertising ID) to deliver targeted or personalized ads.
+                    <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Google Privacy Policy</a>
+                </li>
+                <li>
+                    <strong>RevenueCat (Subscription Management)</strong>: Used to manage and validate Pro (Premium) subscription transactions. RevenueCat processes anonymized purchase statuses from the App Store or Google Play Store to unlock premium features.
+                    <br><a href="https://www.revenuecat.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View RevenueCat Privacy Policy</a>
+                </li>
+            </ul>
+        </div>
     </section>
 
-    <!-- Section 4 -->
+    <!-- Section 4 : Data Security -->
     <section id="securite">
-        <h2><span class="section-num">4</span>Sécurité des Données</h2>
-        <p>
+        <h2>
+            <span class="section-num">4</span>
+            <span class="lang-fr">Sécurité des Données</span>
+            <span class="lang-en">Data Security</span>
+        </h2>
+        
+        <p class="lang-fr">
             Nous mettons en œuvre toutes les mesures de sécurité techniques et organisationnelles requises pour empêcher l'accès non autorisé, la modification, la divulgation ou la destruction de vos informations. 
-        </p>
-        <p>
+            <br><br>
             Vos documents sont stockés de manière isolée et chiffrée, et toutes les communications réseau avec notre infrastructure Supabase s'effectuent via des canaux hautement sécurisés (HTTPS / SSL).
         </p>
-    </section>
-
-    <!-- Section 5 -->
-    <section id="droits">
-        <h2><span class="section-num">5</span>Vos Droits et Suppression de Données</h2>
-        <p>
-            Conformément aux réglementations sur la protection des données personnelles (RGPD pour l'Europe, LPD pour la Suisse, CCPA pour les États-Unis), vous disposez des droits suivants :
+        
+        <p class="lang-en">
+            We implement all technical and organizational security measures required to prevent unauthorized access, alteration, disclosure, or destruction of your information.
+            <br><br>
+            Your documents are stored securely and encrypted, and all network communications with our Supabase infrastructure are carried out via highly secure channels (HTTPS / SSL).
         </p>
-        <ul class="bullets">
-            <li>Droit d'accès aux données collectées vous concernant.</li>
-            <li>Droit de rectification de toute donnée incorrecte.</li>
-            <li><strong>Droit à l'effacement de vos données</strong> : Vous pouvez supprimer définitivement l'ensemble de vos bons et comptes enregistrés sur nos serveurs de sauvegarde directement depuis les paramètres de l'Application ou en nous contactant par courriel.</li>
-        </ul>
     </section>
 
-    <!-- Section 6 -->
+    <!-- Section 5 : User Rights -->
+    <section id="droits">
+        <h2>
+            <span class="section-num">5</span>
+            <span class="lang-fr">Vos Droits et Suppression de Données</span>
+            <span class="lang-en">Your Rights & Data Deletion</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                Conformément aux réglementations sur la protection des données personnelles (RGPD pour l'Europe, LPD pour la Suisse, CCPA pour les États-Unis), vous disposez des droits suivants :
+            </p>
+            <ul class="bullets">
+                <li>Droit d'accès aux données collectées vous concernant.</li>
+                <li>Droit de rectification de toute donnée incorrecte.</li>
+                <li><strong>Droit à l'effacement de vos données</strong> : Vous pouvez supprimer définitivement l'ensemble de vos bons et comptes enregistrés sur nos serveurs de sauvegarde directement depuis les paramètres de l'Application ou en nous contactant par courriel.</li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                In accordance with personal data protection regulations (GDPR for Europe, LPD for Switzerland, CCPA for the United States), you have the following rights:
+            </p>
+            <ul class="bullets">
+                <li>Right to access the personal data collected about you.</li>
+                <li>Right to rectify any incorrect data.</li>
+                <li><strong>Right to erasure (deletion) of your data</strong>: You can permanently delete all your vouchers and accounts saved on our backup servers directly from the Application settings or by contacting us via email.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 6 : Contact -->
     <section id="contact">
-        <h2><span class="section-num">6</span>Contact</h2>
-        <p>
+        <h2>
+            <span class="section-num">6</span>
+            <span class="lang-fr">Contact</span>
+            <span class="lang-en">Contact</span>
+        </h2>
+        
+        <p class="lang-fr">
             Pour toute question, réclamation ou demande concernant vos données personnelles ou cette politique de confidentialité, vous pouvez nous écrire directement à :
         </p>
+        <p class="lang-en">
+            For any questions, claims, or requests regarding your personal data or this privacy policy, you can write to us directly at:
+        </p>
+        
         <p style="text-align: center; margin-top: 15px;">
             <strong style="background: var(--accent-glow); padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.3); font-size: 1.1rem; color: var(--accent);">
                 dev.citarox@gmail.com
@@ -417,10 +591,49 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Voucho Wallet. Tous droits réservés.</p>
-        <p>Propulsé par <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+        <p>&copy; 2026 Voucho Wallet. All rights reserved.</p>
+        <p class="lang-fr">Propulsé par <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+        <p class="lang-en">Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
     </footer>
 </div>
+
+<script>
+    // Language switching logic with local storage persistence and auto-detection
+    function switchLanguage(lang) {
+        // Toggle active states on buttons
+        document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+        // Toggle visibility of language-specific elements
+        const frElements = document.querySelectorAll('.lang-fr');
+        const enElements = document.querySelectorAll('.lang-en');
+
+        frElements.forEach(el => {
+            el.style.display = (lang === 'fr') ? 'block' : 'none';
+        });
+        enElements.forEach(el => {
+            el.style.display = (lang === 'en') ? 'block' : 'none';
+        });
+
+        // Save preference to localStorage
+        localStorage.setItem('preferred-lang', lang);
+    }
+
+    // Auto-detect browser language or fetch preference on load
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('preferred-lang');
+        if (savedLang) {
+            switchLanguage(savedLang);
+        } else {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('fr')) {
+                switchLanguage('fr');
+            } else {
+                switchLanguage('en');
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
