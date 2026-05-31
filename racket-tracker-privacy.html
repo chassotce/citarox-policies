@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité — Racket Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #090b11, #0f121e);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-primary: #f3f1f8;
+            --text-muted: #a39eb9;
+            --accent: #ff5722; /* Tennis clay / Badminton orange accent */
+            --accent-glow: rgba(255, 87, 34, 0.15);
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Language Switcher Button Group */
+        .lang-switch {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: var(--text-primary);
+            box-shadow: 0 0 10px rgba(255, 87, 34, 0.4);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #ffaa88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .last-update {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Nav Quick Links */
+        .quick-links {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-links h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .quick-links ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .quick-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .quick-links a::before {
+            content: '→';
+            margin-right: 8px;
+            color: var(--accent);
+            transition: transform 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .quick-links a:hover::before {
+            transform: translateX(4px);
+        }
+
+        /* Content Sections */
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        section:hover {
+            border-color: rgba(255, 87, 34, 0.2);
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .section-num {
+            background: var(--accent-glow);
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 87, 34, 0.2);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        p strong {
+            color: var(--text-primary);
+        }
+
+        ul.bullets {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        ul.bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        ul.bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.3rem;
+            line-height: 1;
+            top: -2px;
+        }
+
+        /* Third party badges */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge.admob::before { content: '📢'; }
+        .badge.firebase::before { content: '⚡'; }
+        .badge.p2p::before { content: '📡'; }
+
+        /* Security highlight box */
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.04);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box h4 {
+            color: var(--success);
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Language visibility utility classes */
+        .lang-fr { display: block; }
+        .lang-en { display: none; }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .lang-switch {
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Language Toggle Switch -->
+    <div class="lang-switch">
+        <button id="btn-fr" class="lang-btn active" onclick="switchLanguage('fr')">Français</button>
+        <button id="btn-en" class="lang-btn" onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <header>
+        <div class="logo-icon">🎾</div>
+        <h1>Racket Tracker</h1>
+        
+        <!-- Subtitles FR/EN -->
+        <p class="subtitle lang-fr">Politique de Confidentialité</p>
+        <p class="subtitle lang-en">Privacy Policy</p>
+        
+        <!-- Last updates FR/EN -->
+        <p class="last-update lang-fr">Dernière mise à jour : 31 Mai 2026</p>
+        <p class="last-update lang-en">Last updated: May 31, 2026</p>
+    </header>
+
+    <!-- Quick Navigation links -->
+    <div class="quick-links">
+        <h3 class="lang-fr">Accès rapide</h3>
+        <h3 class="lang-en">Quick access</h3>
+        
+        <ul class="lang-fr">
+            <li><a href="#collecte">Collecte des Données</a></li>
+            <li><a href="#tiers">Services Tiers & Partage</a></li>
+            <li><a href="#securite">Sécurité locale et Cloud</a></li>
+            <li><a href="#droits">Vos Droits</a></li>
+        </ul>
+        <ul class="lang-en">
+            <li><a href="#collecte">Data Collection</a></li>
+            <li><a href="#tiers">Third-Party Services</a></li>
+            <li><a href="#securite">Local & Cloud Security</a></li>
+            <li><a href="#droits">Your Rights</a></li>
+        </ul>
+    </div>
+
+    <!-- Section 1 : Introduction -->
+    <section id="introduction">
+        <h2>
+            <span class="section-num">1</span>
+            <span class="lang-fr">Introduction</span>
+            <span class="lang-en">Introduction</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                Bienvenue sur <strong>Racket Tracker</strong> (l'« Application »). Nous accordons une importance primordiale à votre vie privée, à la transparence de vos données, et à la fluidité de vos séances de sport de raquette (Tennis, Padel, Badminton, Squash, Tennis de Table).
+            </p>
+            <p>
+                La présente Politique de Confidentialité décrit comment l'Application gère vos données de match locales, les synchronisations en direct (multijoueur) ainsi que les interactions avec les services tiers.
+            </p>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                Welcome to <strong>Racket Tracker</strong> (the "Application"). We prioritize your privacy, transparency, and the seamless tracking of your racket sports sessions (Tennis, Padel, Badminton, Squash, Table Tennis).
+            </p>
+            <p>
+                This Privacy Policy describes how the Application manages your local match data, real-time multiplayer synchronizations, and interactions with third-party services.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 2 : Data Collection & Encrypt -->
+    <section id="collecte">
+        <h2>
+            <span class="section-num">2</span>
+            <span class="lang-fr">Collecte et Utilisation des Données</span>
+            <span class="lang-en">Data Collection and Use</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                L'Application a été conçue selon des principes stricts de minimisation de données. Nous ne collectons aucune information nominative (telle que votre nom, adresse e-mail ou numéro de téléphone) pour faire fonctionner l'Application.
+            </p>
+            <p><strong>Données gérées par l'Application :</strong></p>
+            <ul class="bullets">
+                <li><strong>Historique des Matchs (Stockage local)</strong> : Le nom des joueurs (équipes), le score, la date et le type de sport sont conservés en toute sécurité localement dans le stockage de votre appareil. Aucune base de données centrale ne conserve d'historique persistant de vos parties à votre insu.</li>
+                <li><strong>Identifiant de session de synchronisation</strong> : Un code temporaire à 4 chiffres généré aléatoirement est utilisé uniquement pour lier temporairement deux téléphones lors de la diffusion en direct.</li>
+                <li><strong>Communication Montre Connectée (Watch Connectivity)</strong> : Les données de score transitent localement entre votre téléphone et votre montre (Apple Watch / WearOS) à proximité immédiate pour afficher et contrôler le score au poignet. Aucune donnée n'est transmise sur internet pour ce service.</li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                The Application was built with data minimization in mind. We do not collect any personally identifiable information (such as your name, email address, or phone number) to run the Application.
+            </p>
+            <p><strong>Data managed by the Application:</strong></p>
+            <ul class="bullets">
+                <li><strong>Match History (Local Storage)</strong>: Player (team) names, scores, dates, and sports are safely saved locally in your device's persistent storage. No central database stores persistent logs of your matches without your knowledge.</li>
+                <li><strong>Sync Session Identifier</strong>: A temporary, randomly generated 4-digit code is used solely to link two devices during a live broadcast.</li>
+                <li><strong>Smartwatch Communication (Watch Connectivity)</strong>: Score data is transmitted locally between your phone and your nearby smartwatch (Apple Watch / WearOS) to display and control the score from your wrist. No internet data is used for this service.</li>
+            </ul>
+        </div>
+
+        <!-- Security Highlight Box -->
+        <div class="highlight-box">
+            <h4 class="lang-fr">🛡️ Philosophie Hors-Ligne & Réseau Local</h4>
+            <h4 class="lang-en">🛡️ Offline-First & Local Network Philosophy</h4>
+            
+            <p class="lang-fr">
+                Racket Tracker intègre une technologie de partage en direct Peer-to-Peer (P2P) qui vous permet de diffuser vos scores à un autre smartphone à proximité en Réseau Local (Wi-Fi ou Partage de Connexion/Hotspot). Cette transmission s'effectue directement d'un appareil à l'autre sans passer par internet ni aucun serveur externe.
+            </p>
+            <p class="lang-en">
+                Racket Tracker includes a Peer-to-Peer (P2P) live sharing technology that allows you to broadcast your scores to another nearby smartphone on a Local Network (Wi-Fi or Hotspot). This transmission occurs directly device-to-device without passing through the internet or any external server.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 3 : Third Party Services -->
+    <section id="tiers">
+        <h2>
+            <span class="section-num">3</span>
+            <span class="lang-fr">Fournisseurs de Services Tiers & Partage</span>
+            <span class="lang-en">Third-Party Services & Sharing</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                Pour proposer la diffusion de scores par le Cloud (via 4G/5G) et assurer la gratuité de l'Application, nous utilisons des services partenaires tiers. Ces services respectent des politiques de confidentialité rigoureuses.
+            </p>
+        </div>
+        <div class="lang-en">
+            <p>
+                To provide score broadcasting via the Cloud (over 4G/5G) and keep the Application free, we integrate third-party partner services. These partners adhere to strict privacy standards.
+            </p>
+        </div>
+        
+        <div class="badge-container">
+            <span class="badge firebase">Firebase Firestore</span>
+            <span class="badge p2p">P2P Réseau Local</span>
+            <span class="badge admob">Google AdMob</span>
+        </div>
+
+        <div class="lang-fr">
+            <p>Voici le détail des services partenaires utilisés :</p>
+            <ul class="bullets">
+                <li>
+                    <strong>Firebase Firestore (Base de données Cloud temporaire)</strong> : Utilisé uniquement si vous choisissez d'ouvrir un salon Cloud (partage par code à 4 chiffres). Les détails du score en direct y sont stockés de manière éphémère. Les salons inactifs ou terminés sont <strong>supprimés automatiquement au bout de 12 heures</strong> (ou dès que vous quittez manuellement le match).
+                    <br><a href="https://firebase.google.com/support/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Firebase</a>
+                </li>
+                <li>
+                    <strong>Google AdMob (Régie Publicitaire)</strong> : Utilisé pour afficher des publicités non intrusives dans l'Application. AdMob peut utiliser des identifiants d'appareil uniques (tels que l'ID publicitaire d'Apple ou de Google) de façon anonymisée pour l'attribution des campagnes et l'optimisation des revenus.
+                    <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consulter la politique de Google</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>Here are the details of the integrated services:</p>
+            <ul class="bullets">
+                <li>
+                    <strong>Firebase Firestore (Ephemeral Cloud Database)</strong>: Used only if you choose to open a Cloud room (shared via a 4-digit code). Live score details are stored here in an ephemeral manner. Inactive or ended match rooms are <strong>automatically deleted after 12 hours</strong> (or as soon as you manually exit the match).
+                    <br><a href="https://firebase.google.com/support/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Firebase Privacy Policy</a>
+                </li>
+                <li>
+                    <strong>Google AdMob (Ad Network)</strong>: Used to deliver non-intrusive ads within the Application. AdMob may utilize unique device identifiers (such as Apple's IDFA or Google's Advertising ID) in an anonymized way for attribution and revenue optimization.
+                    <br><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">View Google Privacy Policy</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 4 : Data Security -->
+    <section id="securite">
+        <h2>
+            <span class="section-num">4</span>
+            <span class="lang-fr">Sécurité des Données</span>
+            <span class="lang-en">Data Security</span>
+        </h2>
+        
+        <p class="lang-fr">
+            Nous mettons en œuvre toutes les mesures techniques requises pour protéger vos données. Vos historiques de match sont stockés localement dans des conteneurs sécurisés et isolés de votre OS mobile. 
+            <br><br>
+            Toutes les connexions vers le Cloud Firebase Firestore transitent par des protocoles hautement sécurisés et cryptés (HTTPS / TLS) pour interdire toute interception de données réseau.
+        </p>
+        
+        <p class="lang-en">
+            We implement all technical measures necessary to safeguard your data. Your match history is saved locally in sandbox containers isolated by your mobile OS.
+            <br><br>
+            All connections to Firebase Firestore utilize highly secure, encrypted protocols (HTTPS / TLS) to prevent any interception of network data.
+        </p>
+    </section>
+
+    <!-- Section 5 : User Rights -->
+    <section id="droits">
+        <h2>
+            <span class="section-num">5</span>
+            <span class="lang-fr">Vos Droits et Suppression de Données</span>
+            <span class="lang-en">Your Rights & Data Deletion</span>
+        </h2>
+        
+        <div class="lang-fr">
+            <p>
+                Bien que nous ne stockions aucune donnée personnelle sur nos serveurs de façon permanente, vous conservez le contrôle total de vos données :
+            </p>
+            <ul class="bullets">
+                <li><strong>Effacement de l'Historique local</strong> : Vous pouvez à tout moment vider définitivement l'ensemble de votre historique de match directement depuis les paramètres de l'Application.</li>
+                <li><strong>Suppression des données de synchronisation</strong> : En quittant simplement l'écran de suivi de match ("Retour à l'accueil"), les données du match hébergées sur le Cloud Firestore sont immédiatement et définitivement détruites.</li>
+            </ul>
+        </div>
+        
+        <div class="lang-en">
+            <p>
+                Even though we do not permanently store any personal data on our servers, you retain absolute control over your information:
+            </p>
+            <ul class="bullets">
+                <li><strong>Clearing Local History</strong>: You can at any time permanently clear your entire match history directly from the settings screen of the Application.</li>
+                <li><strong>Deletion of Sync Data</strong>: By simply exiting the match tracker screen ("Return to Home"), all match data hosted on Cloud Firestore is immediately and permanently destroyed.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section 6 : Contact -->
+    <section id="contact">
+        <h2>
+            <span class="section-num">6</span>
+            <span class="lang-fr">Contact</span>
+            <span class="lang-en">Contact</span>
+        </h2>
+        
+        <p class="lang-fr">
+            Pour toute question concernant cette politique ou vos données de match, vous pouvez nous écrire à tout moment à l'adresse suivante :
+        </p>
+        <p class="lang-en">
+            For any questions regarding this policy or your match data, you can write to us at any time at the following address:
+        </p>
+        
+        <p style="text-align: center; margin-top: 15px;">
+            <strong style="background: var(--accent-glow); padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(255, 87, 34, 0.3); font-size: 1.1rem; color: var(--accent);">
+                dev.citarox@gmail.com
+            </strong>
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Racket Tracker. All rights reserved.</p>
+        <p class="lang-fr">Propulsé par <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+        <p class="lang-en">Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+    </footer>
+</div>
+
+<script>
+    // Language switching logic with local storage persistence and auto-detection
+    function switchLanguage(lang) {
+        // Toggle active states on buttons
+        document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+        // Toggle visibility of language-specific elements
+        const frElements = document.querySelectorAll('.lang-fr');
+        const enElements = document.querySelectorAll('.lang-en');
+
+        frElements.forEach(el => {
+            el.style.display = (lang === 'fr') ? 'block' : 'none';
+        });
+        enElements.forEach(el => {
+            el.style.display = (lang === 'en') ? 'block' : 'none';
+        });
+
+        // Save preference to localStorage
+        localStorage.setItem('preferred-lang', lang);
+    }
+
+    // Auto-detect browser language or fetch preference on load
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('preferred-lang');
+        if (savedLang) {
+            switchLanguage(savedLang);
+        } else {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('fr')) {
+                switchLanguage('fr');
+            } else {
+                switchLanguage('en');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
